@@ -18,8 +18,8 @@ import javax.persistence.*;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
 public class Salary extends BaseEntity{
-    @Column(name = "salary_one", nullable = false)
-    String salary_one;
+    @Column (name = "price",nullable = false,unique = true)
+    String price;
 
     @Enumerated (EnumType.STRING)
     Role role;
