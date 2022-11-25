@@ -37,9 +37,9 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/mainpage", method = RequestMethod.GET)
     public String hello() {
-        return "hello";
+        return "mainpage";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)

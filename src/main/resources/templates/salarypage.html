@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary</title>
+</head>
+<body>
+<form th:action="@{/salarypage}" enctype="multipart/form-data" method="post" th:object="${salary}">
+    <div><label> Цена за 1 ед товара : <input th:value="${price}" type="text" name="price"/> </label></div>
+    <div><label> Должность : <input th:value="${role}" type="text" name="role"/> </label></div>
+    <div><label> Изделие : <input th:value="${product}" type="text" name="product"></label></div>
+    <div><input type="submit" value="Сохранить"/></div>
+</form>
+</body>
+</html>
