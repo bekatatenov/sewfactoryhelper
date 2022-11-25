@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Добро пожаловать-закройщик</title>
+</head>
+<body>
+<form th:action="@{/registration}" enctype="multipart/form-data" method="post" th:object="${users}">
+<div><label> Тип/назначения ткани : <input th:value="${product_name}" type="text" name="product_name"/> </label></div>
+<div><label> Номер рулона : <input th:value="${product_color}" type="text" name="product_color"/> </label></div>
+<div><label> Цвет рулона : <input th:value="${qty}" type="text" name="qty"></label></div>
+<div><label> Длина рулона : <input th:value="${price}" type="text" name="price"/> </label></div>
+<div><label> Количество расскроенных единиц изделия: <input th:value="${waste}" type="text" name="waste"/> </label></div>
+<div><label> Расход метров ткани на 1 единицу изделия: <input th:value="${salary}" type="text" name="salary"/> </label></div>
+<div><label> Остаток ткани с рулона: <input th:value="${create_time}" type="text" name="create_time"/> </label></div>
+<div><label> Цена за 1 единицу изделия: <input th:value="${create_time}" type="text" name="create_time"/>
+    <div><label> Заработная плата: <input th:value="${create_time}" type="text" name="create_time"/>
+        <div><label> Дата: <input th:value="${create_time}" type="text" name="create_time"/>
+            <div><input type="submit" value="Сохранить"/>
+            </div>
+</body>
+</html>

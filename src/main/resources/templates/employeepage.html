@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Личная страница работника</title>
+</head>
+<body>
+<form th:action="@{/registration}" enctype="multipart/form-data" method="post" th:object="${users}">
+    <div><label> Наименование изделия : <input th:value="${product_name}" type="text" name="product_name"/> </label></div>
+    <div><label> Цвет изделия : <input th:value="${product_color}" type="text" name="product_color"/> </label></div>
+    <div><label> Количество изготовленного изделия : <input th:value="${qty}" type="text" name="qty"></label></div>
+    <div><label> Цена за 1 единицу изделия : <input th:value="${price}" type="text" name="price"/> </label></div>
+    <div><label> Количество бракованных изделий: <input th:value="${waste}" type="text" name="waste"/> </label></div>
+    <div><label> Заработная плата: <input th:value="${salary}" type="text" name="salary"/> </label></div>
+    <div><label> Дата: <input th:value="${create_time}" type="text" name="create_time"/> </label></div>
+    <div><input type="submit" value="Сохранить"/></div>
+
+    <div> <label>
+        Посмотреть общую сумму заработной платы за все изделия:
+        <a th:href="@{/getallsalary}"><input type="button" value="Лист готовых изделий"/></a>
+    </div>
+</form>
+</body>
+</html>
