@@ -53,6 +53,7 @@ public class UserController {
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute Users user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setIsActive(true);
         this.userService.save(user);
         return "login";
     }
