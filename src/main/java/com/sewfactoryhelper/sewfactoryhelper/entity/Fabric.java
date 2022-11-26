@@ -1,11 +1,10 @@
 package com.sewfactoryhelper.sewfactoryhelper.entity;
 
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "fabric")
@@ -38,8 +37,9 @@ public class Fabric extends BaseEntity{
     @Column (name = "waste", nullable = false)//Остаток метров с одного рулона
     Integer waste;
 
-    @Column (name = "price", nullable = false)//Цена за 1 единицу изделия
-    Integer price;
+    @ManyToOne
+    @JoinColumn(name = "price_id", nullable = false)
+    Salary price;
 
     @Column (name = "salary") //Заработная плата: прайс * количество
     Integer salary;

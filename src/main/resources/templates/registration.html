@@ -7,12 +7,12 @@
 </head>
 <body>
 <form th:action="@{/registration}" enctype="multipart/form-data" method="post" th:object="${users}">
-    <div><label> Fio : <input th:value="${fio}" type="text" name="fio"/> </label></div>
-    <div><label> Roles : <input th:value="${roles}" type="text" name="roles"/> </label></div>
-    <div><label> Phone_number : <input th:value="${phone_number}" type="text" name="phone_number"></label></div>
-    <div><label> Login : <input th:value="${login}" type="text" name="login"/> </label></div>
-    <div><label> Password: <input th:value="${password}" type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign Up"/></div>
+    <div><label> ФИО : <input th:value="${fio}" type="text" name="fio"/> </label></div>
+    <div><label> Должность : <input th:value="${roles}" type="text" name="roles"/> </label></div>
+    <div><label> Номер телефона : <input th:value="${phone_number}" type="text" name="phone_number"></label></div>
+    <div><label> Логин : <input th:value="${login}" type="text" name="login"/> </label></div>
+    <div><label> Пароль : <input th:value="${password}" type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Зарегистрировать"/></div>
 </form>
 </body>
 </html>

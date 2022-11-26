@@ -1,5 +1,6 @@
 package com.sewfactoryhelper.sewfactoryhelper.entity;
 
+
 import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,7 +15,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
 public class ListSalary extends BaseEntity{
 
     @ManyToOne

@@ -16,10 +16,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
-public class Salary extends BaseEntity{
-    @Column(name = "salary_one", nullable = false)
-    String salary_one;
+public class Salary extends BaseEntity {
+    @Column(name = "price", nullable = false)
+    String price;
 
     @Enumerated (EnumType.STRING)
     Role role;

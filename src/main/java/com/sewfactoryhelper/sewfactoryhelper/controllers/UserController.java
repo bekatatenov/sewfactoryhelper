@@ -37,9 +37,9 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/mainpage", method = RequestMethod.GET)
     public String hello() {
-        return "hello";
+        return "mainpage";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -53,6 +53,7 @@ public class UserController {
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute Users user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setIsActive(true);
         this.userService.save(user);
         return "login";
     }

@@ -1,5 +1,6 @@
 package com.sewfactoryhelper.sewfactoryhelper.entity;
 
+
 import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -22,9 +23,9 @@ public class Employee extends BaseEntity{
     @Column (name = "qty", nullable = false)
     Integer qty;
 
-    //@ManyToMany
-    //@JoinColumn (name = "price_id", nullable = false)
-    //Salary salary;
+    @ManyToOne
+    @JoinColumn (name = "price_id", nullable = false)
+    Salary price;
 
     @Column (name = "reject")
     Integer reject;
