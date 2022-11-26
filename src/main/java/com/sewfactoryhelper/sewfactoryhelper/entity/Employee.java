@@ -30,6 +30,6 @@ public class Employee extends BaseEntity{
     @Column (name = "reject")
     Integer reject;
 
-    @Column (name = "salary")
+    @Column (name = "salary") //price * qty
     Integer salary;
 }
