@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Fabric</title>
+</head>
+<body>
+
+<form th:action="@{/createdfabric}" enctype="multipart/form-data" method="post" th:object="${fabric}">
+    <div><label> Тип ткани : <input th:value="${fabric_type}" type="text" name="fabric_type"/> </label></div>
+    <div><label> Номер рулона : <input th:value="${fabric_web_num}" type="number" name="fabric_web_num"/> </label></div>
+    <div><label> Цвет рулона : <input th:value="${fabric_web_color}" type="text" name="fabric_web_color"/> </label></div>
+    <div><label> Длина рулона : <input th:value="${length_web}" type="number" name="length_web"/> </label></div>
+    <div><label> Расход метров ткани на 1 единицу изделия : <input th:value="${expense}" type="number" name="expense"/> </label></div>
+    <div><label> Остаток ткани с рулона : <input th:value="${waste}" type="number" name="waste"/> </label></div>
+    <div><label> Цена за 1 единицу изделия : <input th:value="${price}" type="number" name="price"/> </label></div>
+    <div><label> Количество готовых изделий : <input th:value="${qty}" type="number" name="qty"/> </label></div>
+    <!-- <div><label> Заработная плата : <input th:value="${salary}" type="number" name="salary"/> </label></div> -->
+    <div><input type="submit" value="Сохранить"/></div>
+</body>
+</html>
