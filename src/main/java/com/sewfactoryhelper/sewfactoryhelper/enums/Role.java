@@ -1,14 +1,14 @@
 package com.sewfactoryhelper.sewfactoryhelper.enums;
 
 public enum Role {
-    USER,
-    ADMIN,
-    DIRECTOR,
-    TECHNOLOGIST,
-    SEWER,
-    IRONING,
-    CUTTER,
-    OVERLOCK,
-    OTK,
-    PACKER
+    ПОЛЬЗОВАТЕЛЬ,
+    АДМИНИСТРАТОР,
+    ДИРЕКТОР,
+    ТЕХНОЛОГ,
+    ШВЕЯ,
+    УТЮЖНИК,
+    ЗАКРОЙЩИК,
+    ОВЕРЛОК,
+    ОТК,
+    УПАКОВЩИК
 }
