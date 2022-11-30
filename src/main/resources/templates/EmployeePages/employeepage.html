@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/createdemployee}" enctype="multipart/form-data" method="post" th:object="${employee}">
+    <select th:field = "*{product}">
+        <option value="product"> Изделие</option>
+        <option th:each="product : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Product).values()}"
+                th:value="${product}" th:text="#{${product}}"></option>
+    </select>
+    <div><label> Цена за 1 единицу изделия : <input th:value="${price}" type="number" name="price"/> </label></div>
+    <div><label> Количество готовых изделий : <input th:value="${qty}" type="number" name="qty"/> </label></div>
+    <div><label> Брак : <input th:value="${reject}" type="number" name="reject"/> </label></div>
+    <!-- <div><label> Заработная плата : <input th:value="${salary}" type="number" name="salary"/> </label></div> -->
+    <div><input type="submit" value="Сохранить"/></div>
+</body>
+</html>
