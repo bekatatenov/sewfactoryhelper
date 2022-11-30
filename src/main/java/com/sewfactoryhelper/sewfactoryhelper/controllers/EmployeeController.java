@@ -16,6 +16,13 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+
+    @RequestMapping(value = "/employeeall", method = RequestMethod.GET)
+    public String allEmployee() {
+        return "employeeall";
+    }
+
+    
     @RequestMapping(value = "/creatingemployee", method = RequestMethod.GET)
     public ModelAndView creatingEmployee() {
         ModelAndView modelAndView = new ModelAndView("employeepage");

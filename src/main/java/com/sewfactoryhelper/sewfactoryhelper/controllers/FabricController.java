@@ -17,6 +17,12 @@ public class FabricController {
     @Autowired
     private FabricService fabricService;
 
+
+    @RequestMapping(value = "/fabricall", method = RequestMethod.GET)
+    public String allFabric() {
+        return "fabricall";
+    }
+
     @RequestMapping(value = "/creatingfabric", method = RequestMethod.GET)
     public ModelAndView creatingFabric() {
         ModelAndView modelAndView = new ModelAndView("fabricpage");

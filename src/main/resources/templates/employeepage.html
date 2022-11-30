@@ -13,10 +13,11 @@
         <option th:each="product : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Product).values()}"
                 th:value="${product}" th:text="#{${product}}"></option>
     </select>
-    <div><label> Цена за 1 единицу изделия : <input th:value="${price}" type="number" name="price"/> </label></div>
+    <div><label> Цена за 1 единицу изделия : <input th:value="${price_id}" type="number" name="price_id"/> </label></div>
     <div><label> Количество готовых изделий : <input th:value="${qty}" type="number" name="qty"/> </label></div>
     <div><label> Брак : <input th:value="${reject}" type="number" name="reject"/> </label></div>
     <!-- <div><label> Заработная плата : <input th:value="${salary}" type="number" name="salary"/> </label></div> -->
     <div><input type="submit" value="Сохранить"/></div>
+</form>
 </body>
 </html>
