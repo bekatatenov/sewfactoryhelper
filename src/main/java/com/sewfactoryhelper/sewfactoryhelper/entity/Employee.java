@@ -2,6 +2,7 @@ package com.sewfactoryhelper.sewfactoryhelper.entity;
 
 
 import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
+import com.sewfactoryhelper.sewfactoryhelper.enums.Role;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,6 +20,9 @@ public class Employee extends BaseEntity{
 
     @Enumerated (EnumType.STRING)
     Product product;
+
+    @Enumerated (EnumType.STRING)
+    Role role;
 
     @Column (name = "qty", nullable = false)
     Integer qty;

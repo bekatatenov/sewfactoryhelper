@@ -7,8 +7,13 @@
 </head>
 <body>
 <form th:action="@{/createsalary}" enctype="multipart/form-data" method="post" th:object="${salary}">
-    <div><label> Цена за 1 ед товара : <input th:value="${price}" type="text" name="price"/> </label></div>
-    <div><label> Должность : <input th:value="${role}" type="text" name="role"/> </label></div>
+    <div><label> Ставка зп за 1 ед товара : <input th:value="${price}" type="text" name="price"/> </label></div>
+    <select th:field = "*{role}">
+        <option value="role"> Должность </option>
+        <option th:each="role : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Role).values()}"
+                th:value="${role}" th:text="#{${role}}"></option>
+    </select>
+
     <select th:field = "*{product}">
         <option value="product"> Изделие</option>
         <option th:each="product : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Product).values()}"

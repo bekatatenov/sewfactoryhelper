@@ -6,8 +6,15 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1 th:inline="text">Добро пожаловать работник!</h1>
 <form th:action="@{/createdemployee}" enctype="multipart/form-data" method="post" th:object="${employee}">
+
+    <select th:field = "*{role}">
+        <option value="role"> Должность </option>
+        <option th:each="role : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Role).values()}"
+                th:value="${role}" th:text="#{${role}}"></option>
+    </select>
+
     <select th:field = "*{product}">
         <option value="product"> Изделие</option>
         <option th:each="product : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Product).values()}"

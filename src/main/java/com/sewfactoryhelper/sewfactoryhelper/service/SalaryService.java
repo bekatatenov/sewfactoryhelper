@@ -49,4 +49,8 @@ public class SalaryService {
     public void deleteSalary (Long id) {
         salaryRepository.deleteById(id);
     }
+
+    public Salary findByProduct(Product product, Role role) {
+        return this.salaryRepository.findByProductAndRole(product, role);
+    }
 }

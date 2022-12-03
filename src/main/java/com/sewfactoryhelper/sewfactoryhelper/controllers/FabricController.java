@@ -1,9 +1,9 @@
 package com.sewfactoryhelper.sewfactoryhelper.controllers;
 
-import com.sewfactoryhelper.sewfactoryhelper.entity.Employee;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Fabric;
-import com.sewfactoryhelper.sewfactoryhelper.service.EmployeeService;
+import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
 import com.sewfactoryhelper.sewfactoryhelper.service.FabricService;
+import com.sewfactoryhelper.sewfactoryhelper.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class FabricController {
     @Autowired
     private FabricService fabricService;
+    @Autowired
+    private SalaryService salaryService;
 
 
     @RequestMapping(value = "/fabricall", method = RequestMethod.GET)
@@ -32,8 +34,13 @@ public class FabricController {
 
     @PostMapping(value = "/createdfabric")
     public String createFabric(@ModelAttribute Fabric fabric) {
-        fabric.setPrice(fabric.getPrice());
-        this.fabricService.save(fabric);
-        return "fabricall";
+        Salary salary = this.salaryService.findByProduct(fabric.getProduct(), fabric.getRole());
+        if (salary != null) {
+            fabric.setPrice(salary);
+        }
+            this.fabricService.save(fabric);
+            return "fabricall";
+        }
     }
-}
+
+

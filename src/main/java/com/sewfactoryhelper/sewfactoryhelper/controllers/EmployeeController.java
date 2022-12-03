@@ -2,7 +2,9 @@ package com.sewfactoryhelper.sewfactoryhelper.controllers;
 
 import com.sewfactoryhelper.sewfactoryhelper.entity.Employee;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
+import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
 import com.sewfactoryhelper.sewfactoryhelper.service.EmployeeService;
+import com.sewfactoryhelper.sewfactoryhelper.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private SalaryService salaryService;
 
 
     @RequestMapping(value = "/employeeall", method = RequestMethod.GET)
@@ -32,7 +36,11 @@ public class EmployeeController {
 
     @PostMapping(value = "/createdemployee")
     public String createEmployee(@ModelAttribute Employee employee) {
-        employee.setPrice(employee.getPrice());
+        Salary salary = this.salaryService.findByProduct(employee.getProduct(), employee.getRole());
+        if (salary != null) {
+            employee.setPrice(salary);
+        }
+
         this.employeeService.save(employee);
         return "employeeall";
     }
