@@ -36,6 +36,10 @@ public class UserController {
         }
         return model;
     }
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    public String helloUser() {
+        return "account";
+    }
 
     @RequestMapping(value = "/mainpage", method = RequestMethod.GET)
     public String hello() {

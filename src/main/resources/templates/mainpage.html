@@ -6,9 +6,11 @@
     <title>Добро пожаловать всем работникам предприятия Aruna</title>
 </head>
 <body>
-<h1 th:inline="text">Добро пожаловать всем работникам предприятия Aruna [[${#httpServletRequest.remoteUser}]]!</h1>
+<h1 th:inline="text">Добро пожаловать, [[${#httpServletRequest.remoteUser}]]!</h1>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign In"/>
 </form>
+
+
 </body>
 </html>

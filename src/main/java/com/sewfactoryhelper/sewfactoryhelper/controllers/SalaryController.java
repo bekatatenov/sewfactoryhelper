@@ -29,8 +29,8 @@ public class SalaryController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/createsalary")
-    public String createSalary(@ModelAttribute Salary salary) {
+    @PostMapping("/createsalary")
+    public String createSalary(@RequestBody Salary salary) {
         salary.setPrice(salary.getPrice());
         this.salaryService.save(salary);
         return "salaryall";
