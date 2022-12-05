@@ -9,8 +9,8 @@
     <title>Your account</title>
 </head>
 <body>
+<form sec:authorize="hasAuthority('ADMIN')" th:action="@{/register}" method="get">    <input type="submit" value="Создать пользователя"></form>
 <h1 th:inline="text">Добро пожаловать, [[${#httpServletRequest.remoteUser}]]!</h1>
-<a th:href="@{/registration}"><input type="button" value="Создать пользователя"/></a>
 <input type="button" value="Ставки заработной платы"/>
 <input type="button" value="Ввести новое готовое количество изделий"/>
 <input type="button" value="Посмотреть список работников"/>
