@@ -19,7 +19,8 @@
   <div><label> Логин : <input type="text" name="login"/> </label></div>
   <div><label> Пароль: <input type="password" name="password"/> </label></div>
   <div>
-    <input type="submit" value="Войти"/>
+
+    <a th:action="@{/account}" method="get"> <input type="submit" value="Войти"/> </a>
     <a th:href="@{/register}"><input type="button" value="Создать"/></a>
   </div>
 </form>

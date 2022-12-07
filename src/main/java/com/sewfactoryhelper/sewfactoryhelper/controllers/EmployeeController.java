@@ -1,8 +1,6 @@
 package com.sewfactoryhelper.sewfactoryhelper.controllers;
 
 import com.sewfactoryhelper.sewfactoryhelper.entity.Employee;
-import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
-import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
 import com.sewfactoryhelper.sewfactoryhelper.service.EmployeeService;
 import com.sewfactoryhelper.sewfactoryhelper.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +32,10 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/createdemployee")
-    public String createEmployee(@ModelAttribute Employee employee) {
-        Salary salary = this.salaryService.findByProduct(employee.getProduct(), employee.getRole());
-        if (salary != null) {
-            employee.setPrice(salary);
-        }
+   @PostMapping(value = "/createdemployee")
+   public String createEmployee(@ModelAttribute Employee employee) {
 
-        this.employeeService.save(employee);
-        return "employeeall";
-    }
+       this.employeeService.save(employee);
+       return "employeeall";
+   }
 }

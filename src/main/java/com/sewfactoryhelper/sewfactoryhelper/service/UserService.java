@@ -12,32 +12,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    public List<Users> getAllUsers () {
+        return userRepository.findAll();
+    }
 
     public void save(Users user) {
         this.userRepository.save(user);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = userRepository.findFirstByLogin(username);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
+    public Users getUserById(long id) {
+        Optional<Users> optional = userRepository.findById(id);
+        Users users1 = null;
+        if (optional.isPresent()) {
+            users1 = optional.get();
+        } else {
+            throw new RuntimeException(" User not found for this id: " +id);
         }
-
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRoles().name()));
-
-
-        return new User(user.getLogin(), user.getPassword(), authorities);
+        return users1;
+    }
+    public void deleteUserById (long id) {
+        this.userRepository.deleteById(id);
     }
 }
-
-    //}//
-
-//}

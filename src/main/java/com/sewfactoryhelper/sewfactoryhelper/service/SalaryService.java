@@ -1,56 +1,50 @@
 package com.sewfactoryhelper.sewfactoryhelper.service;
 
 import com.sewfactoryhelper.sewfactoryhelper.dao.SalaryRepository;
-import com.sewfactoryhelper.sewfactoryhelper.dao.UserRepository;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
-import com.sewfactoryhelper.sewfactoryhelper.entity.Users;
-import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
-import com.sewfactoryhelper.sewfactoryhelper.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SalaryService {
     @Autowired
     private SalaryRepository salaryRepository;
-    @Autowired
-    private UserRepository userRepository;
-
 
     public void save(Salary salary) {
         this.salaryRepository.save(salary);
     }
 
-   // public Salary getSalary (Product product, Role role) {
-   //     return (salaryRepository.findByProductAndRole(product, role));
-   // }
-//
-    public Salary createSalary ( Product product, Role role) throws Exception {
-        Salary salary = salaryRepository.findByProductAndRole(product, role);
-        if(salary == null) {
-            throw new Exception("  ");
-        }
-        salary.setPrice (salary.getPrice());
-        return salaryRepository.save(salary);
+    public List<Salary> getAllSalary () {
+        return salaryRepository.findAll();
     }
 
-    public Salary updateSalary (Salary salary, Long userId, Product product, Role role) throws Exception {
-        Users users = userRepository.findById(userId).get();
-        if (users == null) {
-            throw new Exception(" ");
+    public Salary getSalaryById(long id) {
+        Optional<Salary> optional = salaryRepository.findById(id);
+        Salary salary = null;
+        if (optional.isPresent()) {
+            salary = optional.get();
+        } else {
+            throw new RuntimeException(" Salary not found for this id: " +id);
         }
-        Salary oldSalary  = salaryRepository.findByProductAndRole(product, role);
-        oldSalary.setPrice(salary.getPrice());
-        oldSalary.setProduct(product);
-        oldSalary.setRole(role);
-        return salaryRepository.save(salary);
+        return salary;
     }
 
     public void deleteSalary (Long id) {
         salaryRepository.deleteById(id);
     }
 
-    public Salary findByProduct(Product product, Role role) {
-        return this.salaryRepository.findByProductAndRole(product, role);
+    public Page<Salary> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.salaryRepository.findAll(pageable);
     }
 }

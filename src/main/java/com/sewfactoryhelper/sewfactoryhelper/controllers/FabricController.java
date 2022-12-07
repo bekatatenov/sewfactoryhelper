@@ -32,15 +32,12 @@ public class FabricController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/createdfabric")
-    public String createFabric(@ModelAttribute Fabric fabric) {
-        Salary salary = this.salaryService.findByProduct(fabric.getProduct(), fabric.getRole());
-        if (salary != null) {
-            fabric.setPrice(salary);
-        }
-            this.fabricService.save(fabric);
-            return "fabricall";
-        }
-    }
+ @PostMapping(value = "/createdfabric")
+ public String createFabric(@ModelAttribute Fabric fabric) {
+
+         this.fabricService.save(fabric);
+        return "fabricall";
+     }
+ }
 
 

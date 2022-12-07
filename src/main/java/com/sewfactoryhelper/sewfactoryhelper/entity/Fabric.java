@@ -2,7 +2,6 @@ package com.sewfactoryhelper.sewfactoryhelper.entity;
 
 
 import com.sewfactoryhelper.sewfactoryhelper.enums.FabricType;
-import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
 import com.sewfactoryhelper.sewfactoryhelper.enums.Role;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -47,7 +46,8 @@ public class Fabric extends BaseEntity{
     @JoinColumn(name = "price_id", nullable = false)
     Salary price;
 
-    @Enumerated (EnumType.STRING)
+    @ManyToOne
+    @JoinColumn (name = "product_id", nullable = false)
     Product product;
 
     @Column (name = "salary") //Заработная плата: прайс * количество

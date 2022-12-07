@@ -18,7 +18,6 @@
                 th:value="${role}" th:text="#{${role}}"></option>
     </select>
 
-
     <select th:field = "*{fabricType}">
         <option value="fabric_type"> Тип ткани</option>
         <option th:each="fabric_type : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.FabricType).values()}"
