@@ -9,10 +9,13 @@
     <title>Your account</title>
 </head>
 <body>
+<form sec:authorize="hasAnyAuthority('ADMIN', 'DIRECTOR')" th:action="@{/register}" method="get">    <input type="submit" value="Создать пользователя"></form>
 <h1 th:inline="text">Добро пожаловать, [[${#httpServletRequest.remoteUser}]]!</h1>
-<a th:href="@{/registration}"><input type="button" value="Создать пользователя"/></a>
-<input type="button" value="Ставки заработной платы"/>
-<input type="button" value="Ввести новое готовое количество изделий"/>
-<input type="button" value="Посмотреть список работников"/>
+<form sec:authorize="hasAnyAuthority('ADMIN', 'DIRECTOR', 'TECHNOLOGIST')" th:action="@{/showNewSalaryForm}" method="get"> <input type="button" value="Ввести ставку заработной платы"/>
+</form>
+<form sec:authorize="hasAnyAuthority('ADMIN', 'SEWER', 'IRONNING', 'PACKER', 'OTK', 'OVERLOCK')" th:action="@{/creatingemployee}" method="get"> <input type="button" value="Ввести новое готовое количество изделий"/>
+</form>
+    <form sec:authorize="hasAnyAuthority('ADMIN', 'DIRECTOR')" th:action="@{/}" method="get"> <input type="submit" value="Посмотреть список работников"/>
+</form>
 </body>
 </html>

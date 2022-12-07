@@ -1,7 +1,6 @@
 package com.sewfactoryhelper.sewfactoryhelper.entity;
 
 
-import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -21,7 +20,8 @@ public class ListSalary extends BaseEntity{
     @JoinColumn(name = "users_id", nullable = false)
     Users users;
 
-    @Enumerated (EnumType.STRING)
+    @ManyToOne
+    @JoinColumn (name = "product_id", nullable = false)
     Product product;
 
     @ManyToOne

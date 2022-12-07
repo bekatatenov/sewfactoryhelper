@@ -1,7 +1,6 @@
 package com.sewfactoryhelper.sewfactoryhelper.entity;
 
 
-import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
 import com.sewfactoryhelper.sewfactoryhelper.enums.Role;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -18,7 +17,8 @@ import javax.persistence.*;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Employee extends BaseEntity{
 
-    @Enumerated (EnumType.STRING)
+    @ManyToOne
+    @JoinColumn (name = "product_id", nullable = false)
     Product product;
 
     @Enumerated (EnumType.STRING)

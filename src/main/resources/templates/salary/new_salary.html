@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Salary Management System</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Salary Management System</h1>
+		<hr>
+		<h2>Save Salary</h2>
+
+
+		<form action="#" th:action="@{/saveSalary}" th:object="${salary}"
+			method="POST">
+
+			<select class="form-control" th:field="*{productId}">
+				<option th:value="null">value</option>
+				<option th:each="product : ${products}"
+						th:value="${product.id}"
+						th:utext="${product.name}"></option>
+			</select>
+			<select th:field = "*{role}">
+				<option value="role"> Должность </option>
+				<option th:each="role : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Role).values()}"
+						th:value="${role}" th:text="#{${role}}"></option>
+			</select>
+
+				
+				<input type="number" th:field="*{price}"
+				placeholder="Salary price" class="form-control mb-4 col-4">
+				
+				<button type="submit" class="btn btn-info col-2"> Save Salary</button>
+		</form>
+		
+		<hr>
+		
+		<a th:href = "@{/salarypages}"> Back to Salary List</a>
+	</div>
+</body>
+</html>

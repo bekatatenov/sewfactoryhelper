@@ -5,6 +5,7 @@ import com.sewfactoryhelper.sewfactoryhelper.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +28,7 @@ public class UserController {
 
         ModelAndView model = new ModelAndView();
         if (error != null) {
-            model.addObject("error", "Почта или параоль неверны");
+            model.addObject("error", "Почта или пароль неверны");
             model.setViewName("/login");
         }
         if (logout != null) {
@@ -41,10 +42,6 @@ public class UserController {
         return "account";
     }
 
-    @RequestMapping(value = "/mainpage", method = RequestMethod.GET)
-    public String hello() {
-        return "mainpage";
-    }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {

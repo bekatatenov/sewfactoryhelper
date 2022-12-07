@@ -1,7 +1,6 @@
 package com.sewfactoryhelper.sewfactoryhelper.entity;
 
 
-import com.sewfactoryhelper.sewfactoryhelper.enums.Product;
 import com.sewfactoryhelper.sewfactoryhelper.enums.Role;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,6 +22,7 @@ public class Salary extends BaseEntity {
     @Enumerated (EnumType.STRING)
     Role role;
 
-    @Enumerated (EnumType.STRING)
+    @ManyToOne
+    @JoinColumn (name = "product_id", nullable = false)
     Product product;
 }
