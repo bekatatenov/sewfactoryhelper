@@ -17,9 +17,13 @@
 
 		<form action="#" th:action="@{/saveSalary}" th:object="${salary}"
 			method="POST">
-			<input type="text" th:field="*{product}"
-				   placeholder="Salary product" class="form-control mb-4 col-4">
 
+			<select class="form-control" th:field="*{productId}">
+				<option th:value="null">value</option>
+				<option th:each="product : ${products}"
+						th:value="${product.id}"
+						th:utext="${product.name}"></option>
+			</select>
 			<select th:field = "*{role}">
 				<option value="role"> Должность </option>
 				<option th:each="role : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Role).values()}"

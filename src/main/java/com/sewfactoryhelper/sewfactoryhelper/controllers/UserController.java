@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/smth", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
@@ -28,7 +28,7 @@ public class UserController {
 
         ModelAndView model = new ModelAndView();
         if (error != null) {
-            model.addObject("error", "Почта или параоль неверны");
+            model.addObject("error", "Почта или пароль неверны");
             model.setViewName("/login");
         }
         if (logout != null) {

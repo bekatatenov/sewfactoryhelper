@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product extends BaseEntity {
-    @Column (name = "name")
+    @Column (name = "name", unique = true)
     private String name;
 
     @Column (name = "color")

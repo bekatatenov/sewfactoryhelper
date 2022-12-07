@@ -1,6 +1,9 @@
 package com.sewfactoryhelper.sewfactoryhelper.controllers;
 
+import com.sewfactoryhelper.sewfactoryhelper.dto.SalaryDto;
+import com.sewfactoryhelper.sewfactoryhelper.entity.Product;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
+import com.sewfactoryhelper.sewfactoryhelper.service.ProductService;
 import com.sewfactoryhelper.sewfactoryhelper.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +17,9 @@ import java.util.List;
 public class SalaryController {
     @Autowired
     SalaryService salaryService;
+
+    @Autowired
+    ProductService productService;
 
     //@RequestMapping(value = "/salaryall", method = RequestMethod.GET)
     //public String allSalary() {
@@ -35,14 +41,17 @@ public class SalaryController {
 
     @GetMapping("/showNewSalaryForm")
     public String showNewSalaryForm(Model model) {
-        Salary salary = new Salary();
+        SalaryDto salary = new SalaryDto();
         model.addAttribute("salary", salary);
+        model.addAttribute("products", productService.findAll());
         return "salary/new_salary";
     }
 
     @PostMapping("/saveSalary")
-    public String saveSalary(@ModelAttribute Salary salary) {
-        this.salaryService.save(salary);
+    public String saveSalary(@ModelAttribute SalaryDto salary) {
+        Product byId = productService.findById(salary.getProductId());
+        Salary newsalary = new Salary(salary.getPrice(), salary.getRole(), byId);
+        this.salaryService.save(newsalary);
         return "redirect:/";
     }
 

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -46,5 +47,14 @@ public class ProductService {
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.productRepository.findAll(pageable);
+    }
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
+
+    public Product findById(Long productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(()->new NoSuchElementException("Not Found product ny if"));
     }
 }
