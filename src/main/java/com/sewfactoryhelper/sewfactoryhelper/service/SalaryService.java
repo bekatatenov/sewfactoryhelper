@@ -26,14 +26,7 @@ public class SalaryService {
     }
 
     public Salary getSalaryById(long id) {
-        Optional<Salary> optional = salaryRepository.findById(id);
-        Salary salary = null;
-        if (optional.isPresent()) {
-            salary = optional.get();
-        } else {
-            throw new RuntimeException(" Salary not found for this id: " +id);
-        }
-        return salary;
+        return salaryRepository.getOne(id);
     }
 
     public void deleteSalary (Long id) {

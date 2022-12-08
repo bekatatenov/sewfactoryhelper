@@ -23,6 +23,6 @@ public class Salary extends BaseEntity {
     Role role;
 
     @ManyToOne
-    @JoinColumn (name = "product_id", nullable = false)
+    @JoinColumn (name = "product", nullable = false)
     Product product;
 }

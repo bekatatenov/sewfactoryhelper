@@ -9,7 +9,7 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<form th:action="@{/register}" enctype="multipart/form-data" method="post" th:object="${user}">
+<form th:action="@{/registration}" enctype="multipart/form-data" method="post" th:object="${user}">
     <div><label> ФИО : <input th:value="${fio}" type="text" name="fio"/> </label></div>
     <select th:field = "*{roles}">
         <option value="role"> Должность </option>
