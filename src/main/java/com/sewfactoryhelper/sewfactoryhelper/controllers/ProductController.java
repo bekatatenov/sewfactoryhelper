@@ -27,7 +27,7 @@ public class ProductController {
     public String showNewProductForm(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "new_product";
+        return "product/new_product";
     }
 
     @PostMapping("/saveProduct")
@@ -44,11 +44,11 @@ public class ProductController {
 
         // set product as a model attribute to pre-populate the form
         model.addAttribute("product", product);
-        return "update_product";
+        return "product/update_product";
     }
 
     @GetMapping("/deleteProduct/{id}")
-    public String deleteSalary(@PathVariable (value = "id") long id) {
+    public String deleteProduct(@PathVariable (value = "id") long id) {
 
         // call delete salary method
         this.productService.deleteProduct(id);

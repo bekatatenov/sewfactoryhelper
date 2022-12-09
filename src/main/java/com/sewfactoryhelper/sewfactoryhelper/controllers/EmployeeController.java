@@ -1,41 +1,104 @@
 package com.sewfactoryhelper.sewfactoryhelper.controllers;
 
 import com.sewfactoryhelper.sewfactoryhelper.entity.Employee;
+import com.sewfactoryhelper.sewfactoryhelper.entity.Product;
 import com.sewfactoryhelper.sewfactoryhelper.service.EmployeeService;
+import com.sewfactoryhelper.sewfactoryhelper.service.ProductService;
 import com.sewfactoryhelper.sewfactoryhelper.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class EmployeeController {
+
     @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private SalaryService salaryService;
+    EmployeeService employeeService;
 
 
-    @RequestMapping(value = "/employeeall", method = RequestMethod.GET)
-    public String allEmployee() {
-        return "employeeall";
+    @GetMapping("/employeepages")
+    public String viewHomePage(Model model) {
+        return findPaginatedEmployee(1, "name", "asc", model);
     }
 
-    
-    @RequestMapping(value = "/creatingemployee", method = RequestMethod.GET)
-    public ModelAndView creatingEmployee() {
-        ModelAndView modelAndView = new ModelAndView("employeepage");
-        modelAndView.addObject("employee", new Employee());
-        return modelAndView;
+    @RequestMapping("/showNewEmployeeForm")
+    public String showNewEmployeeForm(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "employee/new_employee";
     }
 
-   @PostMapping(value = "/createdemployee")
-   public String createEmployee(@ModelAttribute Employee employee) {
+    @PostMapping("/saveEmployee")
+    public String saveEmployee(@ModelAttribute Employee employee) {
+        this.employeeService.save(employee);
+        return "redirect:/employeepages";
+    }
 
-       this.employeeService.save(employee);
-       return "employeeall";
-   }
+    @GetMapping("/showEmployeeFormForUpdate/{id}")
+    public String showEmployeeFormForUpdate(@PathVariable( value = "id") long id, Model model) {
+
+        // get employee from the service
+        Employee employee = employeeService.getEmployeeById(id);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("employee", employee);
+        return "employee/update_employee";
+    }
+
+    @GetMapping("/deleteEmployee/{id}")
+    public String deleteEmployee(@PathVariable (value = "id") long id) {
+
+        // call delete employee method
+        this.employeeService.deleteEmployee(id);
+        return "redirect:/employeepages";
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginatedEmployee(@PathVariable (value = "pageNo") int pageNo,
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model) {
+        int pageSize = 5;
+
+        Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<Employee> listEmployee = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("listEmployee", listEmployee);
+        return "index";
+    }
 }
+
+
+
+//    @RequestMapping(value = "/creatingemployee", method = RequestMethod.GET)
+//    public ModelAndView creatingEmployee() {
+//        ModelAndView modelAndView = new ModelAndView("employeepage");
+//        modelAndView.addObject("employee", new Employee());
+//        return modelAndView;
+//    }
+
+//   @PostMapping(value = "/createdemployee")
+//   public String createEmployee(@ModelAttribute Employee employee) {
+
+//       this.employeeService.save(employee);
+//       return "employeeall";
+//   }
+
+
+//    @RequestMapping(value = "/employeeall", method = RequestMethod.GET)
+//    public String allEmployee() {
+//        return "employeeall";
+//    }
