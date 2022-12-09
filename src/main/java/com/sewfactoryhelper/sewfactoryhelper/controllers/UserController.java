@@ -19,7 +19,8 @@ public class UserController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String login() {
-        return "login";
+        //return "login";
+        return "redirect:/account";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -37,10 +38,12 @@ public class UserController {
         }
         return model;
     }
+
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public String helloUser() {
         return "account";
     }
+
 
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)

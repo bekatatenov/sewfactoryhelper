@@ -27,7 +27,7 @@ public class ProductController {
     public String showNewProductForm(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "new_product";
+        return "product/new_product";
     }
 
     @PostMapping("/saveProduct")
@@ -44,7 +44,7 @@ public class ProductController {
 
         // set product as a model attribute to pre-populate the form
         model.addAttribute("product", product);
-        return "update_product";
+        return "product/update_product";
     }
 
     @GetMapping("/deleteProduct/{id}")
@@ -74,6 +74,6 @@ public class ProductController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listProduct", listProduct);
-        return "index";
+        return "product/index";
     }
 }
