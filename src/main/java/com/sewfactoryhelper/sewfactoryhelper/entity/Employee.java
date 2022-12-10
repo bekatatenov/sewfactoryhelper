@@ -17,10 +17,6 @@ import javax.persistence.*;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Employee extends BaseEntity{
 
-    @ManyToOne
-    @JoinColumn (name = "product_id", nullable = false)
-    Product product;
-
     @Enumerated (EnumType.STRING)
     Role role;
 
@@ -28,7 +24,7 @@ public class Employee extends BaseEntity{
     Integer qty;
 
     @ManyToOne
-    @JoinColumn (name = "price_id", nullable = false)
+    @JoinColumn (name = "price_id")
     Salary price;
 
     @Column (name = "reject")
@@ -36,4 +32,11 @@ public class Employee extends BaseEntity{
 
     @Column (name = "salary")
     Integer salary;
+
+    public Employee(Role role, Integer qty, Integer reject, Salary price) {
+        this.role = role;
+        this.qty = qty;
+        this.reject = reject;
+        this.price = price;
+    }
 }

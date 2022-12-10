@@ -8,10 +8,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class SalaryDto {
+@NoArgsConstructor
+public class EmployeeDto {
+    private Long id;
     private Long productId;
     private Role role;
-    private Integer price;
+    private Integer qty;
+    private Integer priceId;
+    private Integer reject;
+    private Integer salary;
 }

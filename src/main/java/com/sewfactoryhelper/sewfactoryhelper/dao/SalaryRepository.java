@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SalaryRepository extends JpaRepository <Salary, Long> {
-
+    Salary findFirstByProduct_IdAndRole(Long productId, Role role);
 }

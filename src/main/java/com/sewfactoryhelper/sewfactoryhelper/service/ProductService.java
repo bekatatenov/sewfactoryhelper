@@ -2,6 +2,8 @@ package com.sewfactoryhelper.sewfactoryhelper.service;
 
 import com.sewfactoryhelper.sewfactoryhelper.dao.ProductRepository;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Product;
+import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
+import com.sewfactoryhelper.sewfactoryhelper.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -41,7 +43,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public Page<Product> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+    public Page<Product> findPaginatedProduct(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
                 Sort.by(sortField).descending();
 
