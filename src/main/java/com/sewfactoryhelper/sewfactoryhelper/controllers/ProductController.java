@@ -55,14 +55,14 @@ public class ProductController {
         return "redirect:/productpages";
     }
 
-    @GetMapping("/page/{pageNo}")
+    @GetMapping("/pageProduct/{pageNo}")
     public String findPaginated(@PathVariable (value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
         int pageSize = 5;
 
-        Page<Product> page = productService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        Page<Product> page = productService.findPaginatedProduct(pageNo, pageSize, sortField, sortDir);
         List<Product> listProduct = page.getContent();
 
         model.addAttribute("currentPage", pageNo);

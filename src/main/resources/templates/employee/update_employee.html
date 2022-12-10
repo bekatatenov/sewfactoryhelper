@@ -18,21 +18,28 @@
 			
 			<!-- Add hidden form field to handle update -->
 			<input type="hidden" th:field="*{id}" />
-			<input type="hidden" th:field="*{createTime}">
 
-			<input type="text" th:field="*{role}" class="form-control mb-4 col-4">
+			<input readonly="readonly" th:field = "*{role}">
 
-				
-				<input type="text" th:field="*{product}" class="form-control mb-4 col-4">
+
+			<select class="form-control" th:field="*{productId}">
+				<option th:value="null">value</option>
+				<option th:each="product : ${products}"
+						th:value="${product.id}"
+						th:utext="${product.name}"></option>
+			</select>
 
 			<input type="text" th:field="*{qty}" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{reject}"
+				   placeholder="Reject" class="form-control mb-4 col-4">
 
 				<button type="submit" class="btn btn-info col-2"> Update Employee</button>
 		</form>
 		
 		<hr>
 		
-		<a th:href = "@{/}"> Back to Employee List</a>
+		<a th:href = "@{/employeepages}"> Back to Employee List</a>
 	</div>
 </body>
 </html>

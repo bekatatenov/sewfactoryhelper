@@ -21,22 +21,22 @@
 			<thead>
 				<tr>
 					<th>
-						<a th:href="@{'/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=role&sortDir=' + ${reverseSortDir}}">
 							Role </a>
 					</th>
 					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=color&sortDir=' + ${reverseSortDir}}">
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=product&sortDir=' + ${reverseSortDir}}">
 							Product </a>
 					</th>
 					<th>
-						<a th:href="@{'/page/' + ${currentPage} + '?sortField=color&sortDir=' + ${reverseSortDir}}">
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=qty&sortDir=' + ${reverseSortDir}}">
 							Quantity </a>
 					</th>
 					<th>
-						<a th:href="@{'/page/' + ${currentPage} + '?sortField=color&sortDir=' + ${reverseSortDir}}">
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=reject&sortDir=' + ${reverseSortDir}}">
 							Reject </a>
 					<th>
-						<a th:href="@{'/page/' + ${currentPage} + '?sortField=color&sortDir=' + ${reverseSortDir}}">
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=salary&sortDir=' + ${reverseSortDir}}">
 							Salary </a>
 
 					<th> Actions </th>
@@ -45,7 +45,7 @@
 			<tbody>
 				<tr th:each="employee : ${listEmployee}">
 					<td th:text="${employee.role}"></td>
-					<td th:text="${employee.product}"></td>
+					<td th:text="${employee.price.product.name}"></td>
 					<td th:text="${employee.qty}"></td>
 					<td th:text="${employee.reject}"></td>
 					<td th:text="${employee.salary}"></td>
