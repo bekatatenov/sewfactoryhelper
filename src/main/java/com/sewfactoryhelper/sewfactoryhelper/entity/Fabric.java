@@ -24,32 +24,40 @@ public class Fabric extends BaseEntity{
     @Enumerated (EnumType.STRING)
     FabricType fabricType;
 
-    @Column (name = "fabric_web_num", nullable = false) //Номер рулона
+    @Column (name = "fabric_web_num") //Номер рулона
     Integer fabric_web_num;
 
-    @Column (name = "fabric_web_color", nullable = false) //Цвет рулона
+    @Column (name = "fabric_web_color") //Цвет рулона
     String fabric_web_color;
 
-    @Column (name = "length_web", nullable = false)//Длина рулона
+    @Column (name = "length_web")//Длина рулона
     Integer length_web;
 
-    @Column (name = "expense", nullable = false)//Расход метров ткани на 1 единицу рулона
+    @Column (name = "expense")//Расход метров ткани на 1 единицу рулона
     Integer expense;
 
-    @Column (name = "waste", nullable = false)//Остаток метров с одного рулона
+    @Column (name = "waste")//Остаток метров с одного рулона
     Integer waste;
 
-    @Column (name = "qty", nullable = false)//Количество готовых единиц
+    @Column (name = "qty")//Количество готовых единиц
     Integer qty;
 
     @ManyToOne
-    @JoinColumn(name = "price_id", nullable = false)
+    @JoinColumn(name = "price_id")
     Salary price;
-
-    @ManyToOne
-    @JoinColumn (name = "product_id", nullable = false)
-    Product product;
 
     @Column (name = "salary") //Заработная плата: прайс * количество
     Integer salary;
+
+    public Fabric(Role role, FabricType fabricType, Integer fabric_web_num, String fabric_web_color, Integer length_web, Integer waste,Integer expense, Integer qty, Salary price) {
+    this.role = role;
+    this.fabricType = fabricType;
+    this.fabric_web_num = fabric_web_num;
+    this.fabric_web_color = fabric_web_color;
+    this.length_web = length_web;
+    this.expense = expense;
+    this.waste = waste;
+    this.qty = qty;
+    this.price = price;
+    }
 }
