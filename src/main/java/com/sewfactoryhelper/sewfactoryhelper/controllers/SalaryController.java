@@ -52,11 +52,11 @@ public class SalaryController {
         Product byId = productService.findById(salary.getProductId());
         Salary newsalary = new Salary(salary.getPrice(), salary.getRole(), byId);
         this.salaryService.save(newsalary);
-        return "redirect:/";
+        return "redirect:/salarypages";
     }
 
-    @RequestMapping("/showFormForUpdate/{id}")
-    	public String showFormForSalaryUpdate(@PathVariable ( value = "id") int id, Model model) {
+    @RequestMapping("/showSalaryFormForUpdate/{id}")
+    	public String showFormForSalaryUpdate(@PathVariable ( value = "id") long id, Model model) {
 
     		// get salary from the service
     		Salary salary = salaryService.getSalaryById(id);
@@ -71,7 +71,7 @@ public class SalaryController {
 
     		// call delete salary method
     		this.salaryService.deleteSalary(id);
-    		return "redirect:/";
+    		return "redirect:/salarypages";
     	}
 
     @GetMapping("/pageSalary/{pageNo}")

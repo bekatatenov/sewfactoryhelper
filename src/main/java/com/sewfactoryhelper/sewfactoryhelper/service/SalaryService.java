@@ -2,6 +2,7 @@ package com.sewfactoryhelper.sewfactoryhelper.service;
 
 import com.sewfactoryhelper.sewfactoryhelper.dao.SalaryRepository;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
+import com.sewfactoryhelper.sewfactoryhelper.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,14 +27,7 @@ public class SalaryService {
     }
 
     public Salary getSalaryById(long id) {
-        Optional<Salary> optional = salaryRepository.findById(id);
-        Salary salary = null;
-        if (optional.isPresent()) {
-            salary = optional.get();
-        } else {
-            throw new RuntimeException(" Salary not found for this id: " +id);
-        }
-        return salary;
+        return salaryRepository.getOne(id);
     }
 
     public void deleteSalary (Long id) {
@@ -46,5 +40,9 @@ public class SalaryService {
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.salaryRepository.findAll(pageable);
+    }
+
+    public Salary findByProductAndRole(Long productId, Role role) {
+        return this.salaryRepository.findFirstByProduct_IdAndRole(productId, role);
     }
 }

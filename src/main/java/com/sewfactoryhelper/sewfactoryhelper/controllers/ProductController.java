@@ -27,24 +27,24 @@ public class ProductController {
     public String showNewProductForm(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "new_product";
+        return "product/new_product";
     }
 
     @PostMapping("/saveProduct")
     public String saveSalary(@ModelAttribute Product product) {
         this.productService.save(product);
-        return "redirect:/";
+        return "redirect:/productpages";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable( value = "id") long id, Model model) {
 
-        // get salary from the service
+        // get product from the service
         Product product = productService.getProductById(id);
 
-        // set salary as a model attribute to pre-populate the form
+        // set product as a model attribute to pre-populate the form
         model.addAttribute("product", product);
-        return "update_product";
+        return "product/update_product";
     }
 
     @GetMapping("/deleteProduct/{id}")
@@ -52,17 +52,17 @@ public class ProductController {
 
         // call delete salary method
         this.productService.deleteProduct(id);
-        return "redirect:/";
+        return "redirect:/productpages";
     }
 
-    @GetMapping("/page/{pageNo}")
+    @GetMapping("/pageProduct/{pageNo}")
     public String findPaginated(@PathVariable (value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
         int pageSize = 5;
 
-        Page<Product> page = productService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        Page<Product> page = productService.findPaginatedProduct(pageNo, pageSize, sortField, sortDir);
         List<Product> listProduct = page.getContent();
 
         model.addAttribute("currentPage", pageNo);
@@ -74,6 +74,6 @@ public class ProductController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listProduct", listProduct);
-        return "index";
+        return "product/index";
     }
 }
