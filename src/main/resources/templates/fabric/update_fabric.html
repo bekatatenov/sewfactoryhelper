@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Salary Management System</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Fabric Management System</h1>
+		<hr>
+		<h2> Изменить сохранения</h2>
+
+		<form action="#" th:action="@{/saveFabric}" th:object="${fabric}"
+			method="POST">
+			
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+
+			<input readonly="readonly" th:field = "*{role}">
+
+
+			<select class="form-control" th:field="*{productId}">
+				<option th:value="null">value</option>
+				<option th:each="product : ${products}"
+						th:value="${product.id}"
+						th:utext="${product.name}"></option>
+			</select>
+
+			</select>
+			<select th:field = "*{fabricType}">
+				<option value="role"> Тип ткани </option>
+				<option th:each="fabricType : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.FabricType).values()}"
+						th:value="${fabricType}" th:text="${fabricType}"></option>
+			</select>
+
+			<input type="text" th:field="*{fabric_web_num}"
+				   placeholder="Номер рулона" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{fabric_web_color}"
+				   placeholder="Цвет рулона" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{length_web}"
+				   placeholder="Длина рулона" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{expense}"
+				   placeholder="Расход на 1 единицу изделия" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{waste}"
+				   placeholder="Остаток метров с рулона" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{qty}" class="form-control mb-4 col-4">
+
+				<button type="submit" class="btn btn-info col-2"> Сохранить изменения</button>
+		</form>
+		
+		<hr>
+		
+		<a th:href = "@{/fabricpages}"> Back to Fabric List</a>
+	</div>
+</body>
+</html>

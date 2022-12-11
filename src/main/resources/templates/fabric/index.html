@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Employee Management System</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	
+</head>
+<body>
+
+	<div class="container my-2">
+	<h1>Список изделий закройщика</h1>
+	
+	<a th:href = "@{/showNewFabricForm}" class="btn btn-primary btn-sm mb-3"> Добавить готовые изделия моей работы </a>
+	
+		<table border="1" class = "table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=role&sortDir=' + ${reverseSortDir}}">
+							Роль </a>
+					</th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=product&sortDir=' + ${reverseSortDir}}">
+							Наименование изделия </a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=fabricType&sortDir=' + ${reverseSortDir}}">
+							Тип ткани </a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=fabric_web_num&sortDir=' + ${reverseSortDir}}">
+							Номер рулона </a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=fabric_web_color&sortDir=' + ${reverseSortDir}}">
+							Цвет рулона </a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=length_web&sortDir=' + ${reverseSortDir}}">
+							Длина рулона </a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=expense&sortDir=' + ${reverseSortDir}}">
+							Расход ткани на 1 единицу изделия </a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=waste&sortDir=' + ${reverseSortDir}}">
+							Остаток метров с рулона </a>
+					</th>
+
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=qty&sortDir=' + ${reverseSortDir}}">
+							Количество </a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=salary&sortDir=' + ${reverseSortDir}}">
+							Заработная плата </a>
+					</th>
+
+					<th> Actions </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="fabric : ${listFabric}">
+					<td th:text="${fabric.role}"></td>
+					<td th:text="${fabric.fabricType}"></td>
+					<td th:text="${fabric.fabric_web_num}"></td>
+					<td th:text="${fabric.fabric_web_color}"></td>
+					<td th:text="${fabric.length_web}"></td>
+					<td th:text="${fabric.expense}"></td>
+					<td th:text="${fabric.waste}"></td>
+					<td th:text="${fabric.price.product.name}"></td>
+					<td th:text="${fabric.qty}"></td>
+					<td th:text="${fabric.salary}"></td>
+
+					<td> <a th:href="@{/showFabricFormForUpdate/{id}(id=${fabric.id})}" class="btn btn-primary">Update</a>
+					    <a th:href="@{/deleteFabric/{id}(id=${fabric.id})}" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div th:if = "${totalPages > 1}">
+			<div class = "row col-sm-10">
+				<div class = "col-sm-2">
+					Total Rows: [[${totalItems}]] 
+				</div>
+				<div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+				</div>
+				<div class = "col-sm-1">
+					<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+				
+				 <div class="col-sm-1">
+    				<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+   				 </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
