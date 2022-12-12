@@ -20,7 +20,7 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String login() {
         //return "login";
-        return "redirect:/account";
+        return "mainpage";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

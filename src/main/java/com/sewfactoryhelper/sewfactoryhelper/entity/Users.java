@@ -23,7 +23,7 @@ public class Users extends BaseEntity{
     @Column(name = "login",nullable = false,unique = true)
     String login;
 
-    @Column(name = "password",nullable = false)
+    @Column(name = "password",nullable = false, unique = true)
     String password;
 
     @Enumerated(EnumType.STRING)

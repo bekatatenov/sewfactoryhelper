@@ -20,7 +20,7 @@ public class Employee extends BaseEntity{
     @Enumerated (EnumType.STRING)
     Role role;
 
-    @Column (name = "qty", nullable = false)
+    @Column (name = "qty")
     Integer qty;
 
     @ManyToOne
