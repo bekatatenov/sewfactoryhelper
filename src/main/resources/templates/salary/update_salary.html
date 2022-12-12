@@ -29,7 +29,7 @@
 			<select th:field = "*{role}">
 				<option value="role"> Должность </option>
 				<option th:each="role : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Role).values()}"
-						th:value="${role}" th:text="#{${role}}"></option>
+						th:value="${role}" th:text="${role}"></option>
 			</select>
 				
 				<input type="text" th:field="*{price}" class="form-control mb-4 col-4">

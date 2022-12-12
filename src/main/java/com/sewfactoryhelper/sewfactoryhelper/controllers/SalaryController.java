@@ -55,16 +55,50 @@ public class SalaryController {
         return "redirect:/salarypages";
     }
 
-    @RequestMapping("/showSalaryFormForUpdate/{id}")
-    	public String showFormForSalaryUpdate(@PathVariable ( value = "id") long id, Model model) {
+    //  @PostMapping("/saveSalary")
+    //  public String saveSalary(@ModelAttribute SalaryDto salary) {
+    //      Product byId = productService.findById(salary.getProductId());
+    //      Salary newSalary = null;
+    //      if (salary.getId() != null) {
+    //          newSalary = this.salaryService.findById(salary.getId());
+    //      }
+    //      if (newSalary == null) {
+    //          newSalary = new Salary(salary.getRole(), salary.getPrice(), byId);
+    //      } else {
+    //          newSalary.setId(salary.getProductId());
+    //          newSalary.setRole(salary.getRole());
+    //          newSalary.setPrice(salary.getPrice());
+    //      }
+    //      this.salaryService.save(newSalary);
+    //      return "redirect:/salarypages";
+    //  }
 
-    		// get salary from the service
-    		Salary salary = salaryService.getSalaryById(id);
+   // @RequestMapping("/showSalaryFormForUpdate/{id}")
+   // 	public String showFormForSalaryUpdate(@PathVariable ( value = "id") long id, Model model) {
+//
+//    		// get salary from the service
+//    		Salary salary = salaryService.getSalaryById(id);
+//
+//    		// set salary as a model attribute to pre-populate the form
+//    		model.addAttribute("salary", salary);
+//    		return "salary/update_salary";
+//    	}
 
-    		// set salary as a model attribute to pre-populate the form
-    		model.addAttribute("salary", salary);
-    		return "salary/update_salary";
-    	}
+    @GetMapping("/showSalaryFormForUpdate/{id}")
+    public String showFormForSalaryUpdate(@PathVariable(value = "id") long id, Model model) {
+
+        // get salary from the service
+        Salary salary = salaryService.getSalaryById(id);
+        SalaryDto dto = new SalaryDto();
+        dto.setRole(salary.getRole());
+        dto.setProductId(salary.getProduct().getId());
+        dto.setPrice(salary.getPrice());
+
+        // set salary as a model attribute to pre-populate the form
+        model.addAttribute("salary", dto);
+        model.addAttribute("products", productService.findAll());
+        return "salary/update_salary";
+    }
 
     	@GetMapping("/deleteSalary/{id}")
     	public String deleteSalary(@PathVariable (value = "id") long id) {
