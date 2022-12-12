@@ -21,7 +21,7 @@ public abstract class BaseEntity {
     @Column(name = "id")
     Long id;
 
-    @Column(name = "create_time", nullable = false)
+    @Column(name = "create_time")
     @CreationTimestamp
     LocalDateTime createTime;
 

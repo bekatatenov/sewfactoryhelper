@@ -11,7 +11,7 @@
 	<div class="container">
 		<h1>Salary Management System</h1>
 		<hr>
-		<h2>Update Salary</h2>
+		<h2>Изменение сохраненной записи ставки</h2>
 
 		<form action="#" th:action="@{/saveSalary}" th:object="${salary}"
 			method="POST">
@@ -19,7 +19,12 @@
 			<!-- Add hidden form field to handle update -->
 			<input type="hidden" th:field="*{id}" />
 
-			<input type="text" th:field="*{product}" class="form-control mb-4 col-4">
+			<select class="form-control" th:field="*{productId}">
+				<option th:value="null">Изделие</option>
+				<option th:each="product : ${products}"
+						th:value="${product.id}"
+						th:utext="${product.name}"></option>
+			</select>
 
 			<select th:field = "*{role}">
 				<option value="role"> Должность </option>
@@ -29,12 +34,12 @@
 				
 				<input type="text" th:field="*{price}" class="form-control mb-4 col-4">
 				
-				<button type="submit" class="btn btn-info col-2"> Update Salary</button>
+				<button type="submit" class="btn btn-info col-2">Сохранить изменения</button>
 		</form>
 		
 		<hr>
 		
-		<a th:href = "@{/salarypages}"> Back to Salary List</a>
+		<a th:href = "@{/salarypages}">Назад</a>
 	</div>
 </body>
 </html>
