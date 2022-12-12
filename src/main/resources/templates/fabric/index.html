@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Employee Management System</title>
+<title>Technologist Management System</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -22,7 +22,7 @@
 				<tr>
 					<th>
 						<a th:href="@{'/page/' + ${currentPage} + '?sortField=role&sortDir=' + ${reverseSortDir}}">
-							Роль </a>
+							Должность </a>
 					</th>
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=product&sortDir=' + ${reverseSortDir}}">
@@ -62,7 +62,7 @@
 							Заработная плата </a>
 					</th>
 
-					<th> Actions </th>
+					<th> Действия </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -78,8 +78,8 @@
 					<td th:text="${fabric.qty}"></td>
 					<td th:text="${fabric.salary}"></td>
 
-					<td> <a th:href="@{/showFabricFormForUpdate/{id}(id=${fabric.id})}" class="btn btn-primary">Update</a>
-					    <a th:href="@{/deleteFabric/{id}(id=${fabric.id})}" class="btn btn-danger">Delete</a>
+					<td> <a th:href="@{/showFabricFormForUpdate/{id}(id=${fabric.id})}" class="btn btn-primary">Обновить</a>
+					    <a th:href="@{/deleteFabric/{id}(id=${fabric.id})}" class="btn btn-danger">Удалить</a>
 					</td>
 				</tr>
 			</tbody>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Salary Management System</title>
+<title></title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -10,15 +10,15 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Employee Management System</h1>
+		<h1>Система сохранения изделий</h1>
 		<hr>
-		<h2>Employee Salary</h2>
+		<h2></h2>
 
 
 		<form action="#" th:action="@{/saveEmployee}" th:object="${employee}"
 			method="POST">
 			<select class="form-control" th:field="*{productId}">
-				<option th:value="null">value</option>
+				<option th:value="null">Изделие</option>
 				<option th:each="product : ${products}"
 						th:value="${product.id}"
 						th:utext="${product.name}"></option>
@@ -30,17 +30,17 @@
 			</select>
 
 			<input type="text" th:field="*{qty}"
-				   placeholder="Quantity" class="form-control mb-4 col-4">
+				   placeholder="Количество" class="form-control mb-4 col-4">
 
 			<input type="text" th:field="*{reject}"
-				   placeholder="Reject" class="form-control mb-4 col-4">
+				   placeholder="Брак" class="form-control mb-4 col-4">
 				
-				<button type="submit" class="btn btn-info col-2"> Save Employee</button>
+				<button type="submit" class="btn btn-info col-2"> Сохранить </button>
 		</form>
 		
 		<hr>
 		
-		<a th:href = "@{/}"> Back to Employee List</a>
+		<a th:href = "@{/employeepages}"> Назад</a>
 	</div>
 </body>
 </html>

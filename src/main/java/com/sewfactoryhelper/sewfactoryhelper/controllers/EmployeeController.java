@@ -111,25 +111,3 @@ public class EmployeeController {
         return "employee/index";
     }
 }
-
-
-
-//    @RequestMapping(value = "/creatingemployee", method = RequestMethod.GET)
-//    public ModelAndView creatingEmployee() {
-//        ModelAndView modelAndView = new ModelAndView("employeepage");
-//        modelAndView.addObject("employee", new Employee());
-//        return modelAndView;
-//    }
-
-//   @PostMapping(value = "/createdemployee")
-//   public String createEmployee(@ModelAttribute Employee employee) {
-
-//       this.employeeService.save(employee);
-//       return "employeeall";
-//   }
-
-
-//    @RequestMapping(value = "/employeeall", method = RequestMethod.GET)
-//    public String allEmployee() {
-//        return "employeeall";
-//    }

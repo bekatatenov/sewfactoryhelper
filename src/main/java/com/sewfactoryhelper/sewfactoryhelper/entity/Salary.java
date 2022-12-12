@@ -15,14 +15,14 @@ import javax.persistence.*;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Salary extends BaseEntity {
-    @Column(name = "price", nullable = false)
+    @Column(name = "price")
     Integer price;
 
     @Enumerated (EnumType.STRING)
     Role role;
 
     @ManyToOne
-    @JoinColumn (name = "product", nullable = false)
+    @JoinColumn (name = "product")
     Product product;
 
     public Salary(Integer price, Role role, Product byId) {

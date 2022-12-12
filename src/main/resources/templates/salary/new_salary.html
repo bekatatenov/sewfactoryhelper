@@ -12,14 +12,14 @@
 	<div class="container">
 		<h1>Salary Management System</h1>
 		<hr>
-		<h2>Save Salary</h2>
+		<h2>Добавление новой ставки заработной платы</h2>
 
 
 		<form action="#" th:action="@{/saveSalary}" th:object="${salary}"
 			method="POST">
 
 			<select class="form-control" th:field="*{productId}">
-				<option th:value="null">value</option>
+				<option th:value="null">Изделие</option>
 				<option th:each="product : ${products}"
 						th:value="${product.id}"
 						th:utext="${product.name}"></option>
@@ -32,14 +32,14 @@
 
 				
 				<input type="number" th:field="*{price}"
-				placeholder="Salary price" class="form-control mb-4 col-4">
+				placeholder="Ставка за 1 единицу изделия" class="form-control mb-4 col-4">
 				
-				<button type="submit" class="btn btn-info col-2"> Save Salary</button>
+				<button type="submit" class="btn btn-info col-2">Сохранить</button>
 		</form>
 		
 		<hr>
 		
-		<a th:href = "@{/salarypages}"> Back to Salary List</a>
+		<a th:href = "@{/salarypages}"> Назад</a>
 	</div>
 </body>
 </html>

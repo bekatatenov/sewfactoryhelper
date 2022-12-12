@@ -1,13 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Пользователи</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
 </head>
 <body>
 
-<div th:each="user : ${users}">
-    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getFio()}">user</a>
+<div class="container my-2">
+    <h1>Список пользователей</h1>
+
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=roles&sortDir=' + ${reverseSortDir}}">
+                    Должность </a>
+            </th>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=fio&sortDir=' + ${reverseSortDir}}">
+                    ФИО </a>
+            </th>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=phone_number&sortDir=' + ${reverseSortDir}}">
+                    Номер телефона </a>
+            </th>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=login&sortDir=' + ${reverseSortDir}}">
+                    Логин </a>
+            </th>
+            <th> Действия </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${listUsers}">
+            <td th:text="${user.roles}"></td>
+            <td th:text="${user.fio}"></td>
+            <td th:text="${user.phone_number}"></td>
+            <td th:text="${user.login}"></td>
+            <td>
+                <a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-danger">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if = "${totalPages > 1}">
+        <div class = "row col-sm-10">
+            <div class = "col-sm-2">
+                Total Rows: [[${totalItems}]]
+            </div>
+            <div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+            </div>
+            <div class = "col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
