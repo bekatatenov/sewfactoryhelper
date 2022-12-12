@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SalaryDto {
+    private Long Id;
     private Long productId;
     private Role role;
     private Integer price;
