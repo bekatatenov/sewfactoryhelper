@@ -68,7 +68,7 @@ public class UserController {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setIsActive(true);
         this.userService.save(user);
-        return "login";
+        return "account";
     }
 
     @GetMapping("/deleteUser/{id}")
@@ -84,7 +84,7 @@ public class UserController {
                                       @RequestParam("sortField") String sortField,
                                       @RequestParam("sortDir") String sortDir,
                                       Model model) {
-        int pageSize = 5;
+        int pageSize = 10;
 
         Page<Users> page = userService.findPaginatedUser(pageNo, pageSize, sortField, sortDir);
         List<Users> listUsers = page.getContent();

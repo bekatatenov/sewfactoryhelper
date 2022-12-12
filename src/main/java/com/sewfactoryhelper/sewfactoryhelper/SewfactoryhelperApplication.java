@@ -9,5 +9,4 @@ public class SewfactoryhelperApplication {
     public static void main(String[] args) {
         SpringApplication.run(SewfactoryhelperApplication.class, args);
     }
-
 }

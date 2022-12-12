@@ -60,7 +60,7 @@ public class ProductController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 10;
 
         Page<Product> page = productService.findPaginatedProduct(pageNo, pageSize, sortField, sortDir);
         List<Product> listProduct = page.getContent();

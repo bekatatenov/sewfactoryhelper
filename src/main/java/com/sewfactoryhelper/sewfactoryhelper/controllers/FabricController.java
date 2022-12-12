@@ -98,7 +98,7 @@ public class FabricController {
                                       @RequestParam("sortField") String sortField,
                                       @RequestParam("sortDir") String sortDir,
                                       Model model) {
-        int pageSize = 5;
+        int pageSize = 10;
 
         Page<Fabric> page = fabricService.findPaginatedFabric(pageNo, pageSize, sortField, sortDir);
         List<Fabric> listFabric = page.getContent();

@@ -113,7 +113,7 @@ public class SalaryController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 10;
 
         Page<Salary> page = salaryService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Salary> listSalary = page.getContent();
