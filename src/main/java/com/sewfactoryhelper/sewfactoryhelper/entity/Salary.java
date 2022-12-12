@@ -25,10 +25,10 @@ public class Salary extends BaseEntity {
     @JoinColumn (name = "product", nullable = false)
     Product product;
 
-    public Salary(Integer price, Role role, Product byId) {
-        this.price = price;
-        this.role = role;
-        this.product = byId;
 
-    }
+ //   public Salary(Role role, Integer price, Product byId) {
+ //       this.role = role;
+ //       this.price = price;
+ //       this.product = byId;
+ //   }
 }

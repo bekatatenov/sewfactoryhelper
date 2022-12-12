@@ -13,7 +13,7 @@
 <h1 th:inline="text">Добро пожаловать, [[${#httpServletRequest.remoteUser}]]!</h1>
 <form sec:authorize="hasAnyAuthority('ADMIN', 'DIRECTOR', 'TECHNOLOGIST')" th:action="@{/showNewSalaryForm}" method="get"> <input type="submit" value="Ввести ставку заработной платы"/>
 </form>
-<form sec:authorize="hasAnyAuthority('ADMIN', 'SEWER', 'IRONNING', 'PACKER', 'OTK', 'OVERLOCK')" th:action="@{/creatingemployee}" method="get"> <input type="submit" value="Ввести новое готовое количество изделий"/>
+<form sec:authorize="hasAnyAuthority('ADMIN', 'SEWER', 'IRONNING', 'PACKER', 'OTK', 'OVERLOCK')" th:action="@{/showNewEmployeeForm}" method="get"> <input type="submit" value="Ввести новое готовое количество изделий"/>
 </form>
     <form sec:authorize="hasAnyAuthority('ADMIN', 'DIRECTOR')" th:action="@{/}" method="get"> <input type="submit" value="Посмотреть список работников"/>
 </form>

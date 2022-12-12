@@ -17,17 +17,21 @@
 
 		<form action="#" th:action="@{/saveEmployee}" th:object="${employee}"
 			method="POST">
-			<select class="form-control" th:field="*{productId}">
-				<option th:value="null">value</option>
+			<div><label> Изделие :
+				<select class="form-control" th:field="*{productId}">
+
 				<option th:each="product : ${products}"
 						th:value="${product.id}"
 						th:utext="${product.name}"></option>
 			</select>
+			</label></div>
+			<div><label> Должность :
 			<select th:field = "*{role}">
-				<option value="role"> Должность </option>
+				<option value="role">  </option>
 				<option th:each="role : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Role).values()}"
 						th:value="${role}" th:text="${role}"></option>
 			</select>
+			</label></div>
 
 			<input type="text" th:field="*{qty}"
 				   placeholder="Quantity" class="form-control mb-4 col-4">
@@ -40,7 +44,7 @@
 		
 		<hr>
 		
-		<a th:href = "@{/}"> Back to Employee List</a>
+		<a th:href = "@{/employeepages}"> Back to Employee List</a>
 	</div>
 </body>
 </html>

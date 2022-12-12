@@ -1,9 +1,7 @@
 package com.sewfactoryhelper.sewfactoryhelper.controllers;
 
 import com.sewfactoryhelper.sewfactoryhelper.dto.EmployeeDto;
-import com.sewfactoryhelper.sewfactoryhelper.dto.SalaryDto;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Employee;
-import com.sewfactoryhelper.sewfactoryhelper.entity.Product;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
 import com.sewfactoryhelper.sewfactoryhelper.service.EmployeeService;
 import com.sewfactoryhelper.sewfactoryhelper.service.ProductService;
@@ -13,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -111,25 +108,3 @@ public class EmployeeController {
         return "employee/index";
     }
 }
-
-
-
-//    @RequestMapping(value = "/creatingemployee", method = RequestMethod.GET)
-//    public ModelAndView creatingEmployee() {
-//        ModelAndView modelAndView = new ModelAndView("employeepage");
-//        modelAndView.addObject("employee", new Employee());
-//        return modelAndView;
-//    }
-
-//   @PostMapping(value = "/createdemployee")
-//   public String createEmployee(@ModelAttribute Employee employee) {
-
-//       this.employeeService.save(employee);
-//       return "employeeall";
-//   }
-
-
-//    @RequestMapping(value = "/employeeall", method = RequestMethod.GET)
-//    public String allEmployee() {
-//        return "employeeall";
-//    }

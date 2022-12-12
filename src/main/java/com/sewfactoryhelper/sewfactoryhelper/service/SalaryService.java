@@ -1,6 +1,7 @@
 package com.sewfactoryhelper.sewfactoryhelper.service;
 
 import com.sewfactoryhelper.sewfactoryhelper.dao.SalaryRepository;
+import com.sewfactoryhelper.sewfactoryhelper.entity.Employee;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
 import com.sewfactoryhelper.sewfactoryhelper.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -44,5 +46,10 @@ public class SalaryService {
 
     public Salary findByProductAndRole(Long productId, Role role) {
         return this.salaryRepository.findFirstByProduct_IdAndRole(productId, role);
+    }
+
+    public Salary findById(Long SalaryID) {
+        return salaryRepository.findById(SalaryID)
+                .orElseThrow(()->new NoSuchElementException("Not Found"));
     }
 }

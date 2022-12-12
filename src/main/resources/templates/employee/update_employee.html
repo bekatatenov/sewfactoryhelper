@@ -22,12 +22,14 @@
 			<input readonly="readonly" th:field = "*{role}">
 
 
-			<select class="form-control" th:field="*{productId}">
+			<div><label> Изделие :
+				<select class="form-control" th:field="*{productId}">
 				<option th:value="null">value</option>
 				<option th:each="product : ${products}"
 						th:value="${product.id}"
 						th:utext="${product.name}"></option>
 			</select>
+			</label></div>
 
 			<input type="text" th:field="*{qty}" class="form-control mb-4 col-4">
 

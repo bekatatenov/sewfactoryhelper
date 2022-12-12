@@ -17,13 +17,13 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Users extends BaseEntity{
 
-    @Column (name = "fio", nullable = false)
+    @Column (name = "fio")
     String fio;
 
-    @Column(name = "login",nullable = false,unique = true)
+    @Column(name = "login",unique = true)
     String login;
 
-    @Column(name = "password",nullable = false)
+    @Column(name = "password",unique = true)
     String password;
 
     @Enumerated(EnumType.STRING)

@@ -1,6 +1,8 @@
 package com.sewfactoryhelper.sewfactoryhelper.controllers;
 
+import com.sewfactoryhelper.sewfactoryhelper.dto.EmployeeDto;
 import com.sewfactoryhelper.sewfactoryhelper.dto.SalaryDto;
+import com.sewfactoryhelper.sewfactoryhelper.entity.Employee;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Product;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Salary;
 import com.sewfactoryhelper.sewfactoryhelper.service.ProductService;
@@ -21,19 +23,8 @@ public class SalaryController {
     @Autowired
     ProductService productService;
 
-    //@RequestMapping(value = "/salaryall", method = RequestMethod.GET)
-    //public String allSalary() {
-    //    return "salaryall";
-    //}
-//
-    //@RequestMapping(value = "/creatingsalary", method = RequestMethod.GET)
-    //public ModelAndView creatingsalary() {
-    //    ModelAndView modelAndView = new ModelAndView("salarypage");
-    //    modelAndView.addObject("salary", new Salary());
-    //    return modelAndView;
-    //}
-//
-// display list of salary
+
+    // display list of salary
     @GetMapping("/salarypages")
     public String viewHomePage(Model model) {
         return findPaginatedSalary(1, "product", "asc", model);
@@ -47,38 +38,54 @@ public class SalaryController {
         return "salary/new_salary";
     }
 
-    @PostMapping("/saveSalary")
-    public String saveSalary(@ModelAttribute SalaryDto salary) {
-        Product byId = productService.findById(salary.getProductId());
-        Salary newsalary = new Salary(salary.getPrice(), salary.getRole(), byId);
-        this.salaryService.save(newsalary);
+  //  @PostMapping("/saveSalary")
+  //  public String saveSalary(@ModelAttribute SalaryDto salary) {
+  //      Product byId = productService.findById(salary.getProductId());
+  //      Salary newSalary = null;
+  //      if (salary.getId() != null) {
+  //          newSalary = this.salaryService.findById(salary.getId());
+  //      }
+  //      if (newSalary == null) {
+  //          newSalary = new Salary(salary.getRole(), salary.getPrice(), byId);
+  //      } else {
+  //          newSalary.setId(salary.getProductId());
+  //          newSalary.setRole(salary.getRole());
+  //          newSalary.setPrice(salary.getPrice());
+  //      }
+  //      this.salaryService.save(newSalary);
+  //      return "redirect:/salarypages";
+  //  }
+
+
+    @GetMapping("/showSalaryFormForUpdate/{id}")
+    public String showFormForSalaryUpdate(@PathVariable(value = "id") long id, Model model) {
+
+        // get salary from the service
+        Salary salary = salaryService.getSalaryById(id);
+        SalaryDto dto = new SalaryDto();
+        dto.setRole(salary.getRole());
+        dto.setProductId(salary.getProduct().getId());
+        dto.setPrice(salary.getPrice());
+
+        // set salary as a model attribute to pre-populate the form
+        model.addAttribute("salary", dto);
+        model.addAttribute("products", productService.findAll());
+        return "salary/update_salary";
+    }
+
+    @GetMapping("/deleteSalary/{id}")
+    public String deleteSalary(@PathVariable(value = "id") long id) {
+
+        // call delete salary method
+        this.salaryService.deleteSalary(id);
         return "redirect:/salarypages";
     }
 
-    @RequestMapping("/showSalaryFormForUpdate/{id}")
-    	public String showFormForSalaryUpdate(@PathVariable ( value = "id") long id, Model model) {
-
-    		// get salary from the service
-    		Salary salary = salaryService.getSalaryById(id);
-
-    		// set salary as a model attribute to pre-populate the form
-    		model.addAttribute("salary", salary);
-    		return "salary/update_salary";
-    	}
-
-    	@GetMapping("/deleteSalary/{id}")
-    	public String deleteSalary(@PathVariable (value = "id") long id) {
-
-    		// call delete salary method
-    		this.salaryService.deleteSalary(id);
-    		return "redirect:/salarypages";
-    	}
-
     @GetMapping("/pageSalary/{pageNo}")
-    public String findPaginatedSalary(@PathVariable (value = "pageNo") int pageNo,
-                                @RequestParam("sortField") String sortField,
-                                @RequestParam("sortDir") String sortDir,
-                                Model model) {
+    public String findPaginatedSalary(@PathVariable(value = "pageNo") int pageNo,
+                                      @RequestParam("sortField") String sortField,
+                                      @RequestParam("sortDir") String sortDir,
+                                      Model model) {
         int pageSize = 5;
 
         Page<Salary> page = salaryService.findPaginated(pageNo, pageSize, sortField, sortDir);
