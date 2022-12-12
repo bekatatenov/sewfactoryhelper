@@ -21,7 +21,7 @@
 </form>
 
 
-<form sec:authorize="hasAnyAuthority('ADMIN', 'DIRECTOR', 'TECHNOLOGIST')" th:action="@{/showNewSalaryForm}"
+<form sec:authorize="hasAnyAuthority('ADMIN', 'DIRECTOR', 'TECHNOLOGIST')" th:action="@{/salarypages}"
       method="get">
     <button type="submit" class="btn btn-info col-2">Ввести ставку заработной платы</button>
 </form>

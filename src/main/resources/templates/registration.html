@@ -10,16 +10,18 @@
 </head>
 <body>
 <form th:action="@{/registration}" enctype="multipart/form-data" method="post" th:object="${user}">
-    <div><label> ФИО : <input th:value="${fio}" type="text" name="fio"/> </label></div>
+    <div><label> ФИО : <input th:value="${fio}" type="text" name="fio" class="form-control mb-4 col-4"/> </label></div>
     <select th:field = "*{roles}">
         <option value="role"> Должность </option>
         <option th:each="role : ${T(com.sewfactoryhelper.sewfactoryhelper.enums.Role).values()}"
                 th:value="${role}" th:text="${role}"></option>
     </select>
-    <div><label> Номер телефона : <input th:value="${phone_number}" type="text" name="phone_number"></label></div>
-    <div><label> Логин : <input th:value="${login}" type="text" name="login"/> </label></div>
-    <div><label> Пароль : <input th:value="${password}" type="password" name="password"/> </label></div>
+    <div><label> Номер телефона : <input th:value="${phone_number}" type="text" name="phone_number" class="form-control mb-4 col-4"/></label></div>
+    <div><label> Логин : <input th:value="${login}" type="text" name="login" class="form-control mb-4 col-4"/> </label></div>
+    <div><label> Пароль : <input th:value="${password}" type="password" name="password" class="form-control mb-4 col-4"/> </label></div>
     <div><input type="submit" value="Зарегистрировать"/></div>
 </form>
+<hr>
+<a th:href = "@{/account}"> Назад</a>
 </body>
 </html>
