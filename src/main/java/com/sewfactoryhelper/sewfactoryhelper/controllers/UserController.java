@@ -1,13 +1,17 @@
 package com.sewfactoryhelper.sewfactoryhelper.controllers;
 
+import com.sewfactoryhelper.sewfactoryhelper.entity.Fabric;
 import com.sewfactoryhelper.sewfactoryhelper.entity.Users;
 import com.sewfactoryhelper.sewfactoryhelper.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -21,6 +25,11 @@ public class UserController {
     public String login() {
         //return "login";
         return "mainpage";
+    }
+
+    @GetMapping("/userall")
+    public String viewHomePage(Model model) {
+        return findPaginatedUser(1, "fio", "asc", model);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -40,7 +49,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/account", method = RequestMethod.GET)
-    public String helloUser() {
+    public String account() {
         return "account";
     }
 
@@ -60,5 +69,35 @@ public class UserController {
         user.setIsActive(true);
         this.userService.save(user);
         return "login";
+    }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable (value = "id") long id) {
+
+        // call delete employee method
+        this.userService.deleteUser(id);
+        return "redirect:/userall";
+    }
+
+    @GetMapping("/pageUser/{pageNo}")
+    public String findPaginatedUser(@PathVariable(value = "pageNo") int pageNo,
+                                      @RequestParam("sortField") String sortField,
+                                      @RequestParam("sortDir") String sortDir,
+                                      Model model) {
+        int pageSize = 5;
+
+        Page<Users> page = userService.findPaginatedUser(pageNo, pageSize, sortField, sortDir);
+        List<Users> listUsers = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("listUsers", listUsers);
+        return "userall";
     }
 }

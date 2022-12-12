@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Salary Management System</title>
+<title>Product Management System</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -11,7 +11,7 @@
 	<div class="container">
 		<h1>Product Management System</h1>
 		<hr>
-		<h2>Update Product</h2>
+		<h2>Изменить изделие</h2>
 
 		<form action="#" th:action="@{/saveProduct}" th:object="${product}"
 			method="POST">
@@ -25,12 +25,12 @@
 				
 				<input type="text" th:field="*{color}" class="form-control mb-4 col-4">
 				
-				<button type="submit" class="btn btn-info col-2"> Update Product</button>
+				<button type="submit" class="btn btn-info col-2">Обновить</button>
 		</form>
 		
 		<hr>
 		
-		<a th:href = "@{/productpages}"> Back to Product List</a>
+		<a th:href = "@{/productpages}">Назад</a>
 	</div>
 </body>
 </html>

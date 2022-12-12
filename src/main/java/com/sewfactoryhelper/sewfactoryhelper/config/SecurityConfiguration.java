@@ -44,9 +44,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        //@Override
+        //    protected void configure(HttpSecurity http) throws Exception {
+        //        http
+        //            .authorizeRequests()
+        //                .antMatchers("/images/**").permitAll()
+
         http.
                 authorizeRequests()
-                .antMatchers("/", "/login", "/register", "/registration").permitAll()
+                .antMatchers("/", "/login", "/images/**").permitAll()
                 .antMatchers("/new").authenticated()
                 .and().csrf().disable()
                 .formLogin().successHandler(customizeAuthenticationSuccessHandler)

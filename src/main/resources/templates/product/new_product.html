@@ -12,24 +12,24 @@
 	<div class="container">
 		<h1>Product Management System</h1>
 		<hr>
-		<h2>Product Salary</h2>
+		<h2>Добавление нового изделия</h2>
 
 
 		<form action="#" th:action="@{/saveProduct}" th:object="${product}"
 			method="POST">
 			<input type="text" th:field="*{name}"
-				   placeholder="Product name" class="form-control mb-4 col-4">
+				   placeholder="Наименование изделия" class="form-control mb-4 col-4">
 
 				
 				<input type="text" th:field="*{color}"
-				placeholder="Product color" class="form-control mb-4 col-4">
+				placeholder="Цвет изделия" class="form-control mb-4 col-4">
 				
-				<button type="submit" class="btn btn-info col-2"> Save Product</button>
+				<button type="submit" class="btn btn-info col-2">Сохранить</button>
 		</form>
 		
 		<hr>
 		
-		<a th:href = "@{/productpages}"> Back to Product List</a>
+		<a th:href = "@{/productpages}">Назад</a>
 	</div>
 </body>
 </html>
